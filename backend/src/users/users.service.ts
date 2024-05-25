@@ -61,12 +61,24 @@ export class UsersService {
     });
   }
 
-  update(id: string, updateUserDto: UpdateUserDto) {
-    return `This action updates a #${id} user`;
+  async update(id: string, updateUserDto: UpdateUserDto) {
+    const user = await this.findOne(id);
+    if (!user)
+      throw new HttpException('User doesn not exists', HttpStatus.BAD_REQUEST);
+
+    return this.prisma.user.update({
+      where: { id },
+      data: {
+        email: updateUserDto.email,
+        firstname: updateUserDto.firstname,
+        lastname: updateUserDto.lastname,
+      },
+      select: this.prisma.prismaExclude('User', ['password']),
+    });
   }
 
   async remove(id: string): Promise<Omit<User, 'password'>> {
-    const user = await this.prisma.user.findUnique({ where: { id } });
+    const user = await this.findOne(id);
     if (!user)
       throw new HttpException('User doesn not exists', HttpStatus.BAD_REQUEST);
 
