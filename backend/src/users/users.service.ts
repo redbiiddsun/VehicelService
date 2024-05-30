@@ -23,7 +23,7 @@ export class UsersService {
   ) {}
 
   async create(createUserDto: CreateUserDto): Promise<Omit<User, 'password'>> {
-    const SALT_ROUNDS: number = this.configService.get('SALT_ROUNDS');
+    const SALT_ROUNDS: number = this.configService.get('SALT_ROUND');
 
     const user = await this.prisma.user.findUnique({
       where: { email: createUserDto.email },
