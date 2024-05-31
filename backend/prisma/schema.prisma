@@ -27,25 +27,26 @@ model User {
 }
 
 model Vehicle {
-  id          String   @id @default(uuid())
-  name        String
-  platenumber String
-  userId      String
-  createdAt   DateTime @default(now())
+  id            String   @id @default(uuid())
+  name          String   @unique
+  platenumber   String
+  plateprovince String
+  userId        String
+  createdAt     DateTime @default(now())
 
-  users User @relation(fields: [userId], references: [id])
+  users    User      @relation(fields: [userId], references: [id])
   services Service[]
 }
 
 model Service {
-  id        String   @id @default(uuid())
-  vehicleId String
-  name      String
-  details   String?
-  location  String?
-  cost      Float?
-  serviceDate      DateTime @default(now())
-  createdAt DateTime @default(now())
+  id          String   @id @default(uuid())
+  vehicleId   String
+  name        String
+  details     String?
+  location    String?
+  cost        Float?
+  serviceDate DateTime @default(now())
+  createdAt   DateTime @default(now())
 
   vehicles Vehicle @relation(fields: [vehicleId], references: [id])
 }
