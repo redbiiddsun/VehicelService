@@ -80,7 +80,7 @@ export class UsersService {
   async remove(id: string): Promise<Omit<User, 'password'>> {
     const user = await this.findOne(id);
     if (!user)
-      throw new HttpException('User doesn not exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException('User doesn not exists', HttpStatus.NOT_FOUND);
 
     return this.prisma.user.delete({
       where: { id },
