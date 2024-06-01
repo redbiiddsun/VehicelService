@@ -14,7 +14,7 @@ export class AuthController {
     @Body() createAuthDto: LoginAuthDto,
     @Res({ passthrough: true }) res: Response,
   ) {
-    const COOKIE_AGE: number = 24 * 60 * 60;
+    const COOKIE_AGE: number = 3 * 60 * 60 * 1000; // 3 hrs  
     const { access_token } = await this.authService.login(createAuthDto);
 
     res.cookie('access_token', access_token, {
