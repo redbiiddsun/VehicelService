@@ -54,7 +54,7 @@ export class VehicleController {
     return this.vehicleService.remove(id, req.user.id);
   }
 
-  @Post()
+  @Post(':vehicleId/service')
   createService(
     @Param('vehicleId') vehicleId: string,
     @Body() createServiceDto: CreateServiceDto,
@@ -62,12 +62,12 @@ export class VehicleController {
     return this.serviceService.create(vehicleId, createServiceDto);
   }
 
-  @Get()
+  @Get(':vehicleId/service')
   findAllService(@Param('vehicleId') vehicleId: string) {
     return this.serviceService.findAll(vehicleId);
   }
 
-  @Get(':id')
+  @Get(':vehicleId/service/:id')
   findOneService(
     @Param('vehicleId') vehicleId: string,
     @Param('id') id: string,
@@ -75,7 +75,7 @@ export class VehicleController {
     return this.serviceService.findOneWithVehicleId(id, vehicleId);
   }
 
-  @Patch(':id')
+  @Patch(':vehicleId/service/:id')
   updateService(
     @Param('id') id: string,
     @Body() updateServiceDto: UpdateServiceDto,
@@ -83,7 +83,7 @@ export class VehicleController {
     return this.serviceService.update(id, updateServiceDto);
   }
 
-  @Delete(':id')
+  @Delete(':vehicleId/service/:id')
   removeService(@Param('id') id: string) {
     return this.serviceService.remove(id);
   }
