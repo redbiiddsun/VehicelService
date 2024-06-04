@@ -1,0 +1,25 @@
+{
+  "name": "vehicelservice",
+  "version": "1.0.0",
+  "description": "",
+  "scripts": {
+    "postinstall-frontend": "cd frontend && npm install",
+    "postinstall-backend": "cd backend && npm install",
+    "postinstall": "npm run postinstall-backend && npm run postinstall-frontend",
+    "dev-backend": "cd backend && npm run start:dev",
+    "dev-frontend": "cd frontend && npm run dev",
+    "dev": "concurrently \"npm:dev-backend\" \"npm:dev-frontend\"",
+    "build-frontend": "cd frontend && npm run build",
+    "build-backend": "cd backend && npm build",
+    "build": "npm run build-backend && npm run build-frontend",
+    "start-backend": "cd backend && npm run start",
+    "start-frontend": "cd frontend && npm run start",
+    "start": "concurrently \"npm:start-backend\" \"npm:start-frontend\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIC",
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}
