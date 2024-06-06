@@ -1,5 +1,5 @@
 import { ReactElement, SVGProps } from "react";
-import { AppIcon } from "../icon";
+import AppIcon from "../icon";
 
 interface IHeaderProps {
 	icon?: ReactElement<JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>>;
