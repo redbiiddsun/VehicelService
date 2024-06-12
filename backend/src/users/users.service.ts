@@ -54,6 +54,13 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { email } });
   }
 
+  async findWithEmailExclude(email: string){
+    return this.prisma.user.findUnique({
+      where: { email },
+      select: this.prisma.prismaExclude('User', ['password']),
+    });
+  }
+
   async findOne(id: string): Promise<Omit<User, 'password'>> {
     return this.prisma.user.findFirst({
       where: { id },

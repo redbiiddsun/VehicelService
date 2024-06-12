@@ -1,7 +1,7 @@
 import { Vehicle } from '@prisma/client';
-import { IsEmail, IsNotEmpty, IsString } from 'class-validator';
+import { IsNotEmpty, IsString } from 'class-validator';
 
-type CreateVehicleType = Omit<Vehicle, 'id' | 'createdAt' | 'userId'>;
+// type CreateVehicleType = Omit<Vehicle, 'id' | 'createdAt' | 'userId'>;
 
 export class CreateVehicleDto implements Vehicle {
   id: string;
@@ -19,5 +19,4 @@ export class CreateVehicleDto implements Vehicle {
   @IsString()
   @IsNotEmpty()
   plateprovince: string;
-
 }

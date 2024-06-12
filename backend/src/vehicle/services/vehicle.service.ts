@@ -9,7 +9,6 @@ export class VehicleService {
   constructor(private readonly prismaService: PrismaService) {}
 
   create(createVehicleDto: CreateVehicleDto, userId: string) {
-
     return this.prismaService.vehicle.create({
       data: {
         name: createVehicleDto.name,
@@ -28,19 +27,22 @@ export class VehicleService {
     return this.prismaService.vehicle.findUnique({ where: { id, userId } });
   }
 
-  async update(id: string, userId: string,updateVehicleDto: UpdateVehicleDto) {
-    
+  async update(id: string, userId: string, updateVehicleDto: UpdateVehicleDto) {
     const exitiedVehicle = await this.findWithId(id, userId);
-    if(!exitiedVehicle) throw new HttpException('Vehicle not found', HttpStatus.NOT_FOUND);
+    if (!exitiedVehicle)
+      throw new HttpException('Vehicle not found', HttpStatus.NOT_FOUND);
 
-    return this.prismaService.vehicle.update({where: {id, userId: id}, data: updateVehicleDto});
+    return this.prismaService.vehicle.update({
+      where: { id, userId: id },
+      data: updateVehicleDto,
+    });
   }
 
   async remove(id: string, userId: string) {
-
     const exitiedVehicle = await this.findWithId(id, userId);
-    if(!exitiedVehicle) throw new HttpException('Vehicle not found', HttpStatus.NOT_FOUND);
+    if (!exitiedVehicle)
+      throw new HttpException('Vehicle not found', HttpStatus.NOT_FOUND);
 
-    return this.prismaService.vehicle.delete({where: {id, userId}});
+    return this.prismaService.vehicle.delete({ where: { id, userId } });
   }
 }
