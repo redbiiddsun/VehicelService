@@ -94,6 +94,9 @@ dist
 # https://nextjs.org/blog/next-9-1#public-directory-support
 # public
 
+# Optional npm cache directory
+.npm
+
 # vuepress build output
 .vuepress/dist
 
