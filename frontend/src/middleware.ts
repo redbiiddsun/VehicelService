@@ -27,6 +27,6 @@ export const config = {
      * - favicon.ico (favicon file)
      * - Signin and Signup pages
      */
-    "/((?!api|_next/static|_next/image|favicon.ico).*)",
+    "/((?!api|_next/static|_next/image|favicon.ico|signin|signup).*)",
   ],
 };
