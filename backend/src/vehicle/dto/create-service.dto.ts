@@ -17,7 +17,7 @@ export class CreateServiceDto implements Service {
   name: string;
 
   @IsNumber()
-  @IsNotEmpty()
+  @IsOptional()
   miles: number;
 
   @IsString()
