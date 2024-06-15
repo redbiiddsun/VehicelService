@@ -6,6 +6,7 @@ import { Label } from "@/components/ui/label";
 import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import { useToast } from "@/components/ui/use-toast";
+import WarningBanner from "./element/warning-banner";
 
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -54,18 +55,14 @@ export default function LoginForm() {
               placeholder="m@example.com"
               {...register("email")}
             />
-            <p className="text-destructive text-sm h-4">
-              {errors.email?.message}
-            </p>
+            <WarningBanner>{errors.email?.message}</WarningBanner>
           </div>
           <div className="grid gap-[1fr,auto,1fr]">
             <Label htmlFor="password" className="mb-2">
               Password
             </Label>
             <Input id="password" type="password" {...register("password")} />
-            <p className="text-destructive text-sm h-4">
-              {errors.password?.message}
-            </p>
+            <WarningBanner>{errors.password?.message}</WarningBanner>
           </div>
           <Button type="submit" className="w-full">
             Sign in
@@ -74,7 +71,7 @@ export default function LoginForm() {
         <CardFooter className="text-center text-sm flex gap-2">
           <p>Dont have an account?</p>
           <Link
-            href="/"
+            href="/signup"
             className="font-medium underline underline-offset-4"
             prefetch={false}
           >
