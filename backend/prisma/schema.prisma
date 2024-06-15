@@ -42,12 +42,13 @@ model Service {
   id          String   @id @default(uuid())
   vehicleId   String
   name        String
-  miles       Int
+  miles       Int?
   details     String?
   location    String?
   cost        Float?
   serviceDate DateTime @default(now())
-  createdAt   DateTime @default(now())
 
+
+  createdAt   DateTime @default(now())
   vehicles Vehicle @relation(fields: [vehicleId], references: [id])
 }
