@@ -29,7 +29,7 @@ export default function LoginForm() {
     try {
       const response = await axiosInstance.post("/auth/login", values);
 
-      if (response.data.statusCode == 200) return router.push("/dashboard");
+      if (response.data.statusCode == 200) return router.push("/");
     } catch (error) {
       reset();
       toast({
