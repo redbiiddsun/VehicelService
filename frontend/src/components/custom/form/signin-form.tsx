@@ -11,6 +11,7 @@ import { axiosInstance } from "@/lib/axios";
 
 import FormInputField from "./element/form-input";
 import { SigninFormValues, SigninSchema } from "@/types/zod/zodSchema";
+import { DASHBOARD_PAGE } from "@/lib/routing";
 
 export default function SigninForm() {
   const router = useRouter();
@@ -28,7 +29,7 @@ export default function SigninForm() {
     try {
       const response = await axiosInstance.post("/auth/login", values);
 
-      if (response.data.statusCode == 200) return router.push("/");
+      if (response.data.statusCode == 200) return router.push(DASHBOARD_PAGE);
     } catch (error) {
       reset();
       toast({
