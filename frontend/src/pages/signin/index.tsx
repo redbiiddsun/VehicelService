@@ -1,5 +1,5 @@
+import SigninForm from "@/components/custom/form/signin-form";
 import AppIcon from "@/components/icon";
-import LoginForm from "@/components/custom/form/login-form";
 
 export default function SigninPage() {
 	return (
@@ -12,7 +12,7 @@ export default function SigninPage() {
 						Enter your email and password to sign in.
 					</p>
 				</div>
-				<LoginForm />
+				<SigninForm />
 			</div>
 		</div>
 	);
