@@ -19,7 +19,7 @@ model User {
   password  String
   firstname String
   lastname  String
-
+  isVerified Boolean @default(false)
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
