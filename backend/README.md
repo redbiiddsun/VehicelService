@@ -30,7 +30,7 @@ Then install
 
 ```sh
 nvm install && nvm use 
-```sh
+```
 
 
 2. Setup .env file
