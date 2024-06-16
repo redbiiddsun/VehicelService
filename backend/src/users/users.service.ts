@@ -29,7 +29,7 @@ export class UsersService {
       where: { email: createUserDto.email },
     });
     if (user)
-      throw new HttpException('User already exists', HttpStatus.BAD_REQUEST);
+      throw new HttpException('Email already exists', HttpStatus.BAD_REQUEST);
 
     const hashedPassword: string = await bcrypt.hash(
       createUserDto.password,
@@ -39,7 +39,12 @@ export class UsersService {
     createUserDto.password = hashedPassword;
 
     return this.prisma.user.create({
-      data: createUserDto,
+      data: {
+        email: createUserDto.email,
+        firstname: createUserDto.firstname,
+        lastname: createUserDto.lastname,
+        password: createUserDto.password,
+      },
       select: this.prisma.prismaExclude('User', ['password']),
     });
   }
@@ -54,7 +59,7 @@ export class UsersService {
     return this.prisma.user.findUnique({ where: { email } });
   }
 
-  async findWithEmailExclude(email: string){
+  async findWithEmailExclude(email: string) {
     return this.prisma.user.findUnique({
       where: { email },
       select: this.prisma.prismaExclude('User', ['password']),
@@ -92,6 +97,13 @@ export class UsersService {
     return this.prisma.user.delete({
       where: { id },
       select: this.prisma.prismaExclude('User', ['password']),
+    });
+  }
+
+  async verifyEmail(id: string): Promise<User> {
+    return this.prisma.user.update({
+      where: { id },
+      data: { isVerified: true },
     });
   }
 }
